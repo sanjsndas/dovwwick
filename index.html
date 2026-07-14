@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dovewick Verdure House · authority garden</title>
+  <!-- Google Fonts: premium serif + sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ----- reset & base ----- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f9f6ef;
+      color: #1e2b24;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ----- brand identity: Dovewick Verdure House ----- */
+    :root {
+      --dove-white: #f9f6ef;
+      --dove-ivory: #ede7db;
+      --dove-verdure: #2c4d3a;
+      --dove-moss: #3f604a;
+      --dove-gold: #b99b6b;
+      --dove-charcoal: #1e2b24;
+      --dove-stone: #6f7a72;
+    }
+
+    /* ----- typography ----- */
+    .serif { font-family: 'Gloock', serif; }
+    .sans { font-family: 'Inter', sans-serif; }
+
+    /* ----- container & spacing ----- */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    /* ----- unique navigation (floating, asymmetric) ----- */
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 0 1.2rem;
+      border-bottom: 2px solid var(--dove-ivory);
+      position: relative;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+    .nav-brand .logo-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--dove-verdure);
+    }
+    .nav-brand .logo-text {
+      font-family: 'Gloock', serif;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      color: var(--dove-charcoal);
+    }
+    .nav-brand .logo-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--dove-stone);
+      margin-left: 0.3rem;
+      font-weight: 400;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.6rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--dove-charcoal);
+    }
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.2rem;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--dove-gold);
+      transition: width 0.2s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--dove-verdure);
+      color: var(--dove-white);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ----- HERO – editorial storytelling layout (asymmetric) ----- */
+    .hero-story {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
+      margin: 3rem 0 4rem;
+      align-items: center;
+    }
+    .hero-text {
+      padding-right: 1rem;
+    }
+    .hero-text .pretitle {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--dove-stone);
+      margin-bottom: 0.6rem;
+    }
+    .hero-text h1 {
+      font-family: 'Gloock', serif;
+      font-size: 3.8rem;
+      line-height: 1.1;
+      color: var(--dove-charcoal);
+      margin-bottom: 1rem;
+    }
+    .hero-text .lead {
+      font-size: 1.2rem;
+      color: var(--dove-stone);
+      max-width: 90%;
+      font-weight: 300;
+    }
+    .hero-image {
+      border-radius: 60px 20px 60px 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 40px -20px rgba(30, 43, 36, 0.2);
+      background: var(--dove-ivory);
+      height: 380px;
+      background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-image img { display: none; } /* fallback handled via bg */
+
+    /* ----- category grid (handcrafted card variety) ----- */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 4rem 0 5rem;
+    }
+    .category-card {
+      background: white;
+      border-radius: 40px 12px 40px 12px;
+      padding: 1.8rem 1.5rem 2rem;
+      box-shadow: 0 12px 30px -12px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      border: 1px solid var(--dove-ivory);
+    }
+    .category-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -16px rgba(44,77,58,0.15); }
+    .category-card .cat-icon { font-size: 2.6rem; margin-bottom: 0.5rem; }
+    .category-card h3 { font-family: 'Gloock', serif; font-size: 1.6rem; margin-bottom: 0.4rem; }
+    .category-card p { color: var(--dove-stone); font-size: 0.95rem; }
+    .category-card .card-img {
+      height: 140px;
+      border-radius: 32px 8px 32px 8px;
+      background: #d9d0be;
+      margin: 1rem 0 0.8rem;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ----- featured article : notebook style (different spacing) ----- */
+    .featured-notebook {
+      background: var(--dove-ivory);
+      padding: 2.8rem 3rem;
+      border-radius: 80px 20px 80px 20px;
+      margin: 3rem 0 4.5rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .notebook-content h2 {
+      font-family: 'Gloock', serif;
+      font-size: 2.4rem;
+      margin-bottom: 0.8rem;
+    }
+    .notebook-content .excerpt {
+      font-size: 1rem;
+      color: #2b3d32;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+    }
+    .notebook-content .meta {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--dove-stone);
+    }
+    .featured-img {
+      height: 220px;
+      border-radius: 50px 8px 50px 8px;
+      background-image: url('https://images.unsplash.com/photo-1592150621598-96f6e67aede2?w=600&q=80');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+    }
+
+    /* ----- content article (long-form) + infographic (split) ----- */
+    .longform-article {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2.8rem;
+      margin: 4rem 0 4.5rem;
+      align-items: start;
+    }
+    .article-main h2 {
+      font-family: 'Gloock', serif;
+      font-size: 2.2rem;
+      border-left: 6px solid var(--dove-gold);
+      padding-left: 1.2rem;
+      margin-bottom: 1.8rem;
+    }
+    .article-main h3 {
+      font-size: 1.5rem;
+      margin: 2rem 0 0.8rem;
+      font-weight: 600;
+    }
+    .article-main p {
+      margin-bottom: 1.2rem;
+      color: #26332b;
+    }
+    .article-main table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.8rem 0;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.02);
+    }
+    .article-main th {
+      background: var(--dove-verdure);
+      color: white;
+      padding: 0.8rem 1rem;
+      text-align: left;
+    }
+    .article-main td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--dove-ivory);
+    }
+    .article-main .faq-item {
+      background: white;
+      padding: 1.2rem 1.6rem;
+      border-radius: 30px 6px 30px 6px;
+      margin: 1.2rem 0;
+      border-left: 4px solid var(--dove-gold);
+    }
+    .infographic-box {
+      background: var(--dove-white);
+      border-radius: 60px 12px 60px 12px;
+      padding: 1.6rem;
+      border: 1px solid var(--dove-ivory);
+      box-shadow: 0 16px 30px -12px rgba(0,0,0,0.04);
+    }
+    .infographic-box .infographic-img {
+      height: 240px;
+      background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600&q=80');
+      background-size: cover;
+      background-position: center;
+      border-radius: 40px 6px 40px 6px;
+      margin-bottom: 1.2rem;
+    }
+    .infographic-box h4 {
+      font-family: 'Gloock', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ----- footer (unique, handcrafted) ----- */
+    .footer-premium {
+      margin-top: 4rem;
+      padding: 3.5rem 0 2rem;
+      border-top: 2px solid var(--dove-ivory);
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .footer-premium .brand-foot .logo-icon { font-size: 2.2rem; }
+    .footer-premium .brand-foot .logo-text { font-family: 'Gloock', serif; font-size: 1.6rem; }
+    .footer-premium h5 { font-weight: 600; margin-bottom: 1rem; color: var(--dove-charcoal); }
+    .footer-premium ul { list-style: none; }
+    .footer-premium ul li { margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--dove-stone); }
+    .footer-premium .legal { grid-column: 1 / -1; text-align: center; padding-top: 2rem; font-size: 0.8rem; color: var(--dove-stone); border-top: 1px solid var(--dove-ivory); margin-top: 1rem; }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .hero-story { grid-template-columns: 1fr; }
+      .featured-notebook { grid-template-columns: 1fr; }
+      .longform-article { grid-template-columns: 1fr; }
+      .category-grid { grid-template-columns: 1fr 1fr; }
+      .footer-premium { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; } /* simplified for demo */
+    }
+    @media (max-width: 600px) {
+      .category-grid { grid-template-columns: 1fr; }
+      .footer-premium { grid-template-columns: 1fr; }
+      .hero-text h1 { font-size: 2.6rem; }
+    }
+
+    /* extra polish */
+    .badge-gold {
+      background: var(--dove-gold);
+      color: white;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      display: inline-block;
+    }
+    .btn-outline {
+      border: 1.5px solid var(--dove-verdure);
+      padding: 0.5rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: 0.15s;
+      display: inline-block;
+      margin-top: 0.8rem;
+    }
+    .btn-outline:hover { background: var(--dove-verdure); color: white; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- navigation -->
+  <header class="nav-wrap">
+    <div class="nav-brand">
+      <span class="logo-icon">🌿</span>
+      <span class="logo-text">Dovewick</span>
+      <span class="logo-tag">Verdure House</span>
+    </div>
+    <div class="nav-links">
+     <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="terms.html">Terms Of Privacy</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+					<li><a href="cookies.html">Cookies Policy</a></li>
+					 <li><a href="categories.html">CATEGORIES</a></li>
+					<li><a href="disclamier.html">DISCLAMIER</a></li>
+    </div>
+  </header>
+
+  <!-- hero (storytelling layout) -->
+  <section class="hero-story">
+    <div class="hero-text">
+      <div class="pretitle">🌱 The Art of Soil &amp; Stem</div>
+      <h1>Where gardens<br />become legacies</h1>
+      <p class="lead">Deep knowledge, handcrafted stories, and the quiet wisdom of perennial growth.</p>
+      <a href="#" class="btn-outline">Explore the journal →</a>
+    </div>
+    <div class="hero-image" role="img" aria-label="lush garden hero"></div>
+  </section>
+
+  <!-- category section (3 cards) with distinct backgrounds -->
+  <div class="category-grid">
+    <div class="category-card" style="background: #f3efe8;">
+      <div class="cat-icon">🌾</div>
+      <h3>Soil Craft</h3>
+      <p>Living biology, mineral balance, and the art of compost.</p>
+      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&q=80');"></div>
+    </div>
+    <div class="category-card" style="background: #f0ede5;">
+      <div class="cat-icon">🍃</div>
+      <h3>Perennial Wisdom</h3>
+      <p>Beyond annuals: trees, shrubs, and enduring structure.</p>
+      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1592150621598-96f6e67aede2?w=400&q=80');"></div>
+    </div>
+    <div class="category-card" style="background: #eae6dd;">
+      <div class="cat-icon">🌿</div>
+      <h3>Edible Ecology</h3>
+      <p>Kitchen gardens, food forests, and seasonal abundance.</p>
+      <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400&q=80');"></div>
+    </div>
+  </div>
+
+  <!-- featured notebook (different card style) -->
+  <div class="featured-notebook">
+    <div class="notebook-content">
+      <span class="badge-gold">Featured Article</span>
+      <h2>Mycorrhizal networks: the hidden intelligence of soil</h2>
+      <p class="excerpt">Beneath every healthy garden lies a web of fungal threads that trade nutrients for sugar — a silent economy that sustains forests.</p>
+      <div class="meta"><span>📅 12 min read</span> <span>✍️ By Elara Moss</span></div>
+      <a href="#" class="btn-outline" style="margin-top: 1.2rem;">Read full essay →</a>
+    </div>
+    <div class="featured-img" role="img" aria-label="mycorrhizal soil image"></div>
+  </div>
+
+  <!-- long-form article + infographic (split) -->
+  <div class="longform-article">
+    <div class="article-main">
+      <h2>Designing the resilient garden: a step-by-step guide</h2>
+      <p><strong>Gardening is not decoration—it is dialogue.</strong> In this guide, we move beyond aesthetics toward ecological resilience. Every choice, from soil amendment to plant pairing, influences the system.</p>
+      <h3>1. Start with the soil profile</h3>
+      <p>Dig a test pit. Observe texture, color, and life. A handful of healthy soil smells like earth after rain and crumbles like dark chocolate. If it’s compacted, introduce organic matter and gypsum.</p>
+      <h3>2. Choose keystone species</h3>
+      <p>Select plants that anchor the ecosystem: oaks, hazels, comfrey, and nitrogen-fixing shrubs. These support wildlife and build fertility over years.</p>
+      <h3>3. Water strategy</h3>
+      <p>Swales, rain gardens, and ollas reduce dependency. Aim for 2–3 cm of organic mulch to retain moisture.</p>
+
+      <table>
+        <tr><th>Element</th><th>Function</th><th>Example</th></tr>
+        <tr><td>Canopy</td><td>Shade &amp; windbreak</td><td>Black locust</td></tr>
+        <tr><td>Understory</td><td>Fruit &amp; habitat</td><td>Elderberry</td></tr>
+        <tr><td>Ground layer</td><td>Soil protection</td><td>Creeping thyme</td></tr>
+      </table>
+
+      <h3>Common mistakes to avoid</h3>
+      <ul style="margin-left:1.5rem; color:#2b3d32;">
+        <li>Over-tilling: destroys fungal networks</li>
+        <li>Ignoring perennials: annuals alone drain nutrients</li>
+        <li>Planting too close: airflow prevents disease</li>
+      </ul>
+
+      <div class="faq-item"><strong>❓ How often should I test soil?</strong><br /> Every spring and after heavy rains. A simple pH kit reveals much.</div>
+      <div class="faq-item"><strong>❓ What is the best mulch?</strong><br /> Ramial wood chips or leaf mold — they feed fungi and retain moisture.</div>
+    </div>
+
+    <aside class="infographic-box">
+      <div class="infographic-img" role="img" aria-label="gardening infographic"></div>
+      <h4>Seasonal rhythm infographic</h4>
+      <p style="font-size:0.9rem; color:#3b5545;">Spring: plant roots, Summer: prune &amp; harvest, Autumn: sow cover crops, Winter: design &amp; rest.</p>
+      <p style="font-size:0.8rem; margin-top:0.6rem;"><strong>Tip:</strong> Always observe three seasons before major changes.</p>
+    </aside>
+  </div>
+
+  <!-- footer (unique 4-col) -->
+  <footer class="footer-premium">
+    <div class="brand-foot">
+      <span class="logo-icon">🌿</span>
+      <span class="logo-text">Dovewick</span>
+      <p style="margin-top:0.4rem; color:var(--dove-stone); font-size:0.9rem;">Verdure House · since 1986</p>
+      <p style="font-size:0.8rem; max-width:200px; color:var(--dove-stone);">A garden library for the curious cultivator.</p>
+    </div>
+    <div><h5>Explore</h5><ul><li>Journal</li><li>Library</li><li>Atlas</li><li>Archive</li></ul></div>
+    <div><h5>Learn</h5><ul><li>Resources</li><li>FAQ</li><li>Authors</li><li>Editorial Policy</li></ul></div>
+    <div><h5>Connect</h5><ul><li>About</li><li>Contact</li><li>Privacy</li><li>Terms</li></ul></div>
+    <div class="legal">© 2026 Dovewick Verdure House — crafted with soil &amp; code. All rights reserved.</div>
+  </footer>
+
+</div>
+<!-- 4 images loaded: hero bg, category cards (2 bg), featured bg, infographic bg = total 4 unique images from unsplash -->
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categories · Dovewick Verdure House</title>
+  <!-- Google Fonts: premium serif + sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ----- reset & base ----- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f9f6ef;
+      color: #1e2b24;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ----- brand identity: Dovewick Verdure House ----- */
+    :root {
+      --dove-white: #f9f6ef;
+      --dove-ivory: #ede7db;
+      --dove-verdure: #2c4d3a;
+      --dove-moss: #3f604a;
+      --dove-gold: #b99b6b;
+      --dove-charcoal: #1e2b24;
+      --dove-stone: #6f7a72;
+    }
+
+    /* ----- typography ----- */
+    .serif { font-family: 'Gloock', serif; }
+    .sans { font-family: 'Inter', sans-serif; }
+
+    /* ----- container & spacing ----- */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    /* ----- unique navigation (floating, asymmetric) ----- */
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 0 1.2rem;
+      border-bottom: 2px solid var(--dove-ivory);
+      position: relative;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+    .nav-brand .logo-icon {
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--dove-verdure);
+    }
+    .nav-brand .logo-text {
+      font-family: 'Gloock', serif;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      color: var(--dove-charcoal);
+    }
+    .nav-brand .logo-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--dove-stone);
+      margin-left: 0.3rem;
+      font-weight: 400;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.6rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--dove-charcoal);
+    }
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.2rem;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--dove-gold);
+      transition: width 0.2s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--dove-verdure);
+      color: var(--dove-white);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+    .nav-links a.active {
+      font-weight: 600;
+      color: var(--dove-verdure);
+    }
+
+    /* ----- categories hero (adapted) ----- */
+    .categories-hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.8rem;
+      margin: 3rem 0 2.5rem;
+      align-items: center;
+    }
+    .categories-text .pretitle {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--dove-stone);
+      margin-bottom: 0.6rem;
+    }
+    .categories-text h1 {
+      font-family: 'Gloock', serif;
+      font-size: 3.6rem;
+      line-height: 1.1;
+      color: var(--dove-charcoal);
+      margin-bottom: 1.2rem;
+    }
+    .categories-text .lead {
+      font-size: 1.2rem;
+      color: var(--dove-stone);
+      max-width: 90%;
+      font-weight: 300;
+      margin-bottom: 1.8rem;
+    }
+    .categories-text .signature {
+      font-family: 'Gloock', serif;
+      font-size: 1.2rem;
+      color: var(--dove-verdure);
+      border-top: 2px solid var(--dove-gold);
+      padding-top: 1rem;
+      display: inline-block;
+    }
+    .categories-image {
+      border-radius: 60px 20px 60px 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 40px -20px rgba(30, 43, 36, 0.2);
+      background: var(--dove-ivory);
+      height: 380px;
+      background-image: url('https://images.unsplash.com/photo-1440589473619-3cde28941638?w=800&q=80');
+      background-size: cover;
+      background-position: center 30%;
+    }
+
+    /* ----- categories grid (main feature) ----- */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0 3.5rem;
+    }
+    .category-card {
+      background: white;
+      border-radius: 40px 12px 40px 12px;
+      padding: 2rem 1.8rem 1.8rem;
+      border: 1px solid var(--dove-ivory);
+      transition: all 0.2s ease;
+      box-shadow: 0 6px 16px -8px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+    }
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 30px -14px rgba(30, 43, 36, 0.08);
+      border-color: var(--dove-gold);
+    }
+    .category-card .emoji-big {
+      font-size: 2.8rem;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .category-card h3 {
+      font-family: 'Gloock', serif;
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      color: var(--dove-verdure);
+    }
+    .category-card .cat-meta {
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--dove-stone);
+      margin-bottom: 0.8rem;
+      border-bottom: 1px dashed var(--dove-ivory);
+      padding-bottom: 0.5rem;
+    }
+    .category-card p {
+      font-size: 0.95rem;
+      color: #2b3d32;
+      margin-bottom: 0.8rem;
+      flex: 1;
+    }
+    .category-card .btn-cat {
+      align-self: flex-start;
+      border: 1.5px solid var(--dove-verdure);
+      padding: 0.3rem 1.6rem;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      transition: 0.15s;
+      margin-top: 0.3rem;
+      background: transparent;
+      color: var(--dove-verdure);
+      cursor: default;
+    }
+    .category-card .btn-cat:hover {
+      background: var(--dove-verdure);
+      color: white;
+    }
+
+    /* special highlight card */
+    .category-card.featured {
+      background: var(--dove-ivory);
+      border-color: var(--dove-gold);
+    }
+
+    /* ----- footer (same as home) ----- */
+    .footer-premium {
+      margin-top: 4rem;
+      padding: 3.5rem 0 2rem;
+      border-top: 2px solid var(--dove-ivory);
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .footer-premium .brand-foot .logo-icon { font-size: 2.2rem; }
+    .footer-premium .brand-foot .logo-text { font-family: 'Gloock', serif; font-size: 1.6rem; }
+    .footer-premium h5 { font-weight: 600; margin-bottom: 1rem; color: var(--dove-charcoal); }
+    .footer-premium ul { list-style: none; }
+    .footer-premium ul li { margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--dove-stone); }
+    .footer-premium .legal { grid-column: 1 / -1; text-align: center; padding-top: 2rem; font-size: 0.8rem; color: var(--dove-stone); border-top: 1px solid var(--dove-ivory); margin-top: 1rem; }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .categories-hero { grid-template-columns: 1fr; }
+      .footer-premium { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .footer-premium { grid-template-columns: 1fr; }
+      .categories-text h1 { font-size: 2.6rem; }
+      .category-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- navigation (identical to about, active category) -->
+  <header class="nav-wrap">
+    <div class="nav-brand">
+      <span class="logo-icon">🌿</span>
+      <span class="logo-text">Dovewick</span>
+      <span class="logo-tag">Verdure House</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="cookies.html">Cookies</a>
+      <a href="categories.html" class="active">Categories</a>
+      <a href="disclamier.html">Disclaimer</a>
+    </div>
+  </header>
+
+  <!-- categories hero -->
+  <section class="categories-hero">
+    <div class="categories-text">
+      <div class="pretitle">📚 explore the archive</div>
+      <h1>Categories of<br />cultivation</h1>
+      <p class="lead">Wander through our collections — from ancient botany to modern regenerative practice. Each category is a doorway to deeper kinship with the living world.</p>
+      <p style="color: #2b3d32; margin-bottom: 0.8rem;">Twelve branches, one rooted wisdom. Choose your path.</p>
+      <div class="signature">— The Dovewick Council</div>
+    </div>
+    <div class="categories-image" role="img" aria-label="Dovewick archive shelves with plants"></div>
+  </section>
+
+  <!-- categories grid (12 cards, garden-inspired) -->
+  <div class="category-grid">
+    <!-- 1 -->
+    <div class="category-card">
+      <div class="emoji-big">🌱</div>
+      <h3>Seed stories</h3>
+      <div class="cat-meta">heritage · 28 articles</div>
+      <p>Chronicles of rare seeds, heirloom varieties, and the hands that saved them.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 2 -->
+    <div class="category-card featured">
+      <div class="emoji-big">🌿</div>
+      <h3>Verdure wisdom</h3>
+      <div class="cat-meta">ecology · 34 articles</div>
+      <p>Essays on plant intelligence, forest dynamics, and symbiotic design.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 3 -->
+    <div class="category-card">
+      <div class="emoji-big">🌸</div>
+      <h3>Floral chronicles</h3>
+      <div class="cat-meta">botany · 19 articles</div>
+      <p>From wild meadows to cultivated borders — the poetry of petals.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 4 -->
+    <div class="category-card">
+      <div class="emoji-big">🍄</div>
+      <h3>Fungal networks</h3>
+      <div class="cat-meta">mycology · 15 articles</div>
+      <p>Mycelium, lichens, and the underground web that sustains life.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 5 -->
+    <div class="category-card featured">
+      <div class="emoji-big">🌳</div>
+      <h3>Arboreal lore</h3>
+      <div class="cat-meta">trees · 22 articles</div>
+      <p>Oaks, elders, and the wisdom of ancient groves. Forest as teacher.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 6 -->
+    <div class="category-card">
+      <div class="emoji-big">🌾</div>
+      <h3>Grain &amp; field</h3>
+      <div class="cat-meta">agriculture · 17 articles</div>
+      <p>Sacred grains, traditional polycultures, and the future of farming.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 7 -->
+    <div class="category-card">
+      <div class="emoji-big">🪴</div>
+      <h3>House &amp; hearth</h3>
+      <div class="cat-meta">domestic · 14 articles</div>
+      <p>Indoor jungles, windowsill apothecaries, and living with plants.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 8 -->
+    <div class="category-card">
+      <div class="emoji-big">🌊</div>
+      <h3>Riparian realms</h3>
+      <div class="cat-meta">water · 11 articles</div>
+      <p>Bogs, streams, and the plants that thrive at water’s edge.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 9 -->
+    <div class="category-card featured">
+      <div class="emoji-big">📜</div>
+      <h3>Herbal folios</h3>
+      <div class="cat-meta">medicine · 26 articles</div>
+      <p>Traditional plant remedies, tinctures, and the art of healing.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 10 -->
+    <div class="category-card">
+      <div class="emoji-big">🌺</div>
+      <h3>Pollinator paths</h3>
+      <div class="cat-meta">wildlife · 13 articles</div>
+      <p>Bees, butterflies, and the plants that call them home.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 11 -->
+    <div class="category-card">
+      <div class="emoji-big">🌻</div>
+      <h3>Sun &amp; season</h3>
+      <div class="cat-meta">phenology · 18 articles</div>
+      <p>Gardening by the sun, moon, and the rhythms of the year.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+    <!-- 12 -->
+    <div class="category-card">
+      <div class="emoji-big">🧑‍🌾</div>
+      <h3>Gardeners’ tales</h3>
+      <div class="cat-meta">people · 20 articles</div>
+      <p>Portraits of cultivators, from backyard growers to land stewards.</p>
+      <span class="btn-cat">browse</span>
+    </div>
+  </div>
+
+  <!-- footer (same as about) -->
+  <footer class="footer-premium">
+    <div class="brand-foot">
+      <span class="logo-icon">🌿</span>
+      <span class="logo-text">Dovewick</span>
+      <p style="margin-top:0.4rem; color:var(--dove-stone); font-size:0.9rem;">Verdure House · since 1986</p>
+      <p style="font-size:0.8rem; max-width:200px; color:var(--dove-stone);">A garden library for the curious cultivator.</p>
+    </div>
+    <div><h5>Explore</h5><ul><li>Journal</li><li>Library</li><li>Atlas</li><li>Archive</li></ul></div>
+    <div><h5>Learn</h5><ul><li>Resources</li><li>FAQ</li><li>Authors</li><li>Editorial Policy</li></ul></div>
+    <div><h5>Connect</h5><ul><li>About</li><li>Contact</li><li>Privacy</li><li>Terms</li></ul></div>
+    <div class="legal">© 2026 Dovewick Verdure House — crafted with soil &amp; code. All rights reserved.</div>
+  </footer>
+
+</div>
+</body>
+</html>
